@@ -33,11 +33,19 @@ public class User {
 
     }
 
-    public User(int id, String username, String password, List<Post> posts, List<Comment> comments) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

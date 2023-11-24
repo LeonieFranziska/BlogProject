@@ -1,5 +1,6 @@
 package com.Blog.comment;
 
+import com.Blog.post.Post;
 import com.Blog.user.User;
 import jakarta.persistence.*;
 
@@ -19,9 +20,20 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+
     public Comment(){
     }
 
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 
     public int getId() {
         return id;

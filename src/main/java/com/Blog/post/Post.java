@@ -1,11 +1,14 @@
 package com.Blog.post;
 
 
+import com.Blog.comment.Comment;
 import com.Blog.user.User;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "post")
 public class Post {
@@ -25,10 +28,22 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "post")
+    @Column(name = "comments")
+    private List<Comment> comments;
+
     public Post() {
     }
 
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public int getId() {
         return id;
