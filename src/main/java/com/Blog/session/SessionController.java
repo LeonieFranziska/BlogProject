@@ -7,26 +7,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.Instant;
 import java.util.Optional;
 
 @Controller
+@RequestMapping(value = "/session")
 public class SessionController { // Einstiegspunkt, um über das Internet zu meiner Applikation zu kommen
 
-//    private SessionRepository sessionRepository;
-//
-//    public SessionController(SessionRepository sessionRepository) {
-//        this.sessionRepository = sessionRepository;
-//    }
+    private SessionRepository sessionRepository;
+
+    public SessionController(SessionRepository sessionRepository) {
+        this.sessionRepository = sessionRepository;
+    }
 
 
-  /*  @GetMapping("")
+    @GetMapping("/session")
     public String home(HttpServletResponse response, Model model) {
         final String food = "Pizza";
         Cookie newCookie = new Cookie("food", food);
         response.addCookie(newCookie);
 
-        return "home";
-    }*/
+        return "/login/login";
+    }
 }

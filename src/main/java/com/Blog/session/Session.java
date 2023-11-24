@@ -15,7 +15,7 @@ public class Session {
     private String id = UUID.randomUUID().toString();
 
     @ManyToOne // Referenz auf die Usertabelle (viele Sessions für einen Nutzer)
-//    @Column(name = "user") TO DO
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "expires_at")
