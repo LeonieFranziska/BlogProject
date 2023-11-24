@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.CompletionException;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -23,10 +23,10 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    @Column(name = "posts")
+
     private List<Post> posts;
     @OneToMany(mappedBy = "user")
-    @Column(name = "comments")
+
     private List<Comment> comments;
 
     public User() {
@@ -76,5 +76,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User " + username;
     }
 }

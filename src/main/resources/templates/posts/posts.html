@@ -73,8 +73,8 @@
         <th>Id</th>
         <th>title</th>
         <th>body</th>
-        <th>date</th>
-        <th>user</th>
+
+
 
 
     </tr>
@@ -82,8 +82,9 @@
         <td th:text="${post.id}"/>
         <td th:text="${post.title}"/>
         <td th:text="${post.body}"/>
-        <td th:text="${post.date}"/>
-        <td th:text="${post.user}"/>
+        <td th:text="${post.getComments().toString()}"/>
+
+
 
 
 

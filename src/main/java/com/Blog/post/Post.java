@@ -31,7 +31,6 @@ public class Post {
     private User user;
 
     @OneToMany(mappedBy = "post")
-    @Column(name = "comments")
     private List<Comment> comments;
 
     public Post() {
@@ -44,6 +43,12 @@ public class Post {
         this.date = date;
         this.user = user;
         this.comments = comments;
+    }
+
+    public Post(int id, String title, String body) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
     }
 
     public List<Comment> getComments() {

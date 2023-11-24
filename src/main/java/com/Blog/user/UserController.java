@@ -20,10 +20,8 @@ public class UserController {
 
     @GetMapping(value = "/show")
     public String show(Model model) {
-        List<User> theUser = new ArrayList<>();
-        theUser.add(new User(1,"hampel","password"));
-        theUser.add(new User(2,"admin","s3cr3t"));
-//                userService.findAll();
+
+        List<User> theUser    =  userService.findAll();
 
         model.addAttribute("userList", theUser);
 
