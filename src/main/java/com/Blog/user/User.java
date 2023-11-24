@@ -30,7 +30,6 @@ public class User {
     private List<Comment> comments;
 
     public User() {
-
     }
 
     public List<Post> getPosts() {
