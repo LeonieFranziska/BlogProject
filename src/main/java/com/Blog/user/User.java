@@ -1,9 +1,12 @@
 package com.Blog.user;
 
+import com.Blog.comment.Comment;
+import com.Blog.post.Post;
 import com.Blog.session.Session;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.concurrent.CompletionException;
 
 @Entity
 @Table(name = "user")
@@ -19,11 +22,23 @@ public class User {
     @Column(name = "password")
     private String password;
 
-//    @OneToMany(mappedBy = "user")
-//    private List<Session> sessions;
+    @OneToMany(mappedBy = "user")
+    @Column(name = "posts")
+    private List<Post> posts;
+    @OneToMany(mappedBy = "user")
+    @Column(name = "comments")
+    private List<Comment> comments;
 
     public User() {
 
+    }
+
+    public User(int id, String username, String password, List<Post> posts, List<Comment> comments) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.posts = posts;
+        this.comments = comments;
     }
 
     public int getId() {

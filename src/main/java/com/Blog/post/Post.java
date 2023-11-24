@@ -1,25 +1,34 @@
 package com.Blog.post;
 
-import com.Blog.account.Account;
+
+import com.Blog.user.User;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-
+@Entity
+@Table(name = "post")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "body")
     private String body;
-    private Account author;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "date", columnDefinition = "DATE")
     private Date date = new Date();
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     public Post() {
     }
 
-    public Post(int id, String title, String body, Account author) {
-        this.id = id;
-        this.title = title;
-        this.body = body;
-        this.author = author;
-    }
+
 
     public int getId() {
         return id;
@@ -45,12 +54,12 @@ public class Post {
         this.body = body;
     }
 
-    public Account getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor(Account author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getDate() {
@@ -61,14 +70,5 @@ public class Post {
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", author=" + author +
-                ", date=" + date +
-                '}';
-    }
+
 }
