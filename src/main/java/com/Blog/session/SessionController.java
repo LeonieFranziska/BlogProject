@@ -21,7 +21,7 @@ public class SessionController { // Einstiegspunkt, um über das Internet zu mei
 //    }
 
 
-   /* @GetMapping("/")
+  /*  @GetMapping("")
     public String home(HttpServletResponse response, Model model) {
         final String food = "Pizza";
         Cookie newCookie = new Cookie("food", food);
