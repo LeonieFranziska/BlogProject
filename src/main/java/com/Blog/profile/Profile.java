@@ -30,7 +30,7 @@ public class Profile {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(mappedBy = "profile", cascade = {CascadeType.PERSIST, CascadeType.DETACH})
+  /*  @OneToOne(mappedBy = "profile", cascade = {CascadeType.PERSIST, CascadeType.DETACH})
     private User user;
-
+*/
 }
