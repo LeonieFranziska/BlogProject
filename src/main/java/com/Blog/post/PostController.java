@@ -29,9 +29,11 @@ public class PostController {
 
     @GetMapping(value = "/show")
     public String show(Model model) {
+        List<Post> thePost  =  postService.findAll();
 
+        model.addAttribute("postList", thePost);
 
-        return "index";
+        return "/posts/posts";
     }
     @GetMapping(value = "/new")
     public String postForm(Model model) {
