@@ -33,7 +33,6 @@ public class PostController {
     @GetMapping(value = "/posts/show")
     public String show(Model model, @ModelAttribute(name = "sessionUser") User user) {
         List<Post> thePost  =  postService.findAll();
-
         model.addAttribute("postList", thePost);
 
         return "/posts/posts";
