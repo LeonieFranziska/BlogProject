@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head>-->
+<!--  <meta charset="utf-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--  <title>User</title>-->
+<!--  <link rel="stylesheet" th:href="@{/css/bulma.min.css}"/>-->
+<!--</head>-->
+<head th:insert="~{/fragments/head :: head(title='User')}"></head>
+
+<body>
+<h1 class=" title is-1">User</h1>
+<div th:replace="~{/fragments/menu :: menu(active='User')}"></div>
+
+
+<table class="table">
+  <tr>
+    <th>Id</th>
+    <th>Username</th>
+    <th>password</th>
+    <th>Is Admin</th>
+
+
+  </tr>
+  <tr th:each="user : ${userList}">
+    <td th:text="${user.id}"/>
+    <td th:text="${user.username}"/>
+    <td th:text="${user.password}"/>
+    <td th:text="${user.isAdmin}"/>
+
+
+  </tr>
+</table>
+
+</body>
+</html>

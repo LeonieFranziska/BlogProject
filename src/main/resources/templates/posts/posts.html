@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/fragments/head :: head(title='Posts')}"></head>
+
+<body>
+<h1 class=" title is-1">Posts</h1>
+<div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>title</th>
+        <th>body</th>
+        <th>Comments</th>
+        <th>Actions</th>
+
+
+
+
+
+    </tr>
+    <tr th:each="post : ${postList}">
+        <td th:text="${post.id}"/>
+        <td th:text="${post.title}"/>
+        <td th:text="${post.body}"/>
+        <td th:text="${post.getComments().toString()}"/>
+        <td>
+            <a th:href="@{/posts/posts/{id}(id=${post.id})}" class="button is-info">
+                            <span class="icon">
+                                <span class="mdi mdi-image-edit-outline"></span>
+                            </span>
+            </a>
+            <a th:href="@{/posts/delete(postId=${post.id})}" class="button is-danger">
+                            <span class="icon">
+                                <span class="mdi mdi-card-remove-outline"></span>
+                            </span>
+            </a>
+        </td>
+
+
+
+
+
+    </tr>
+</table>
+<a th:href="@{/posts/new}" class="button is-primary">New Post</a>
+</body>
+</html>

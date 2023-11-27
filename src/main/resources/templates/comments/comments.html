@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/fragments/head :: head(title='Comments')}"></head>
+
+<body>
+<h1 class=" title is-1">Comments</h1>
+<div th:replace="~{/fragments/menu :: menu(active='Comments')}"></div>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>text</th>
+        <th>Author</th>
+
+    </tr>
+    <tr th:each="comment : ${commentList}">
+        <td th:text="${comment.id}"/>
+        <td th:text="${comment.text}"/>
+        <td th:text="${comment.getUser().getUsername()}"/>
+
+
+    </tr>
+</table>
+
+</body>
+</html>
