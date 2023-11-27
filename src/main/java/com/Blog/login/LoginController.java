@@ -4,8 +4,10 @@ import com.Blog.user.User;
 import com.Blog.user.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +50,15 @@ public class LoginController {
             return "redirect:/posts/show";
         }
             // Login nicht erfolgreich
-        return "login";
+        return "/login/login";
+    }
+
+    @PostMapping ("/logout")
+    @Transactional
+    public String logout(@ModelAttribute(name="sessionUser") User user, Model model){
+        sessionRepository.deleteByUser(user);
+        model.addAttribute("user", user);
+        return "/login/login";
     }
 
 }
