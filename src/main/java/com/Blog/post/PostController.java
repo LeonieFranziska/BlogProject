@@ -2,6 +2,7 @@ package com.Blog.post;
 
 import com.Blog.comment.Comment;
 import com.Blog.user.User;
+import com.Blog.user.UserRepository;
 import com.Blog.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +20,12 @@ public class PostController {
 
     private PostRepository postService;
 
+
     @Autowired
     public PostController(PostRepository postService) {
         this.postService = postService;
-    }
+           }
+
 
 
 
@@ -78,6 +81,8 @@ public class PostController {
 
         return "redirect:/posts/show";
     }
+
+
 
 
 

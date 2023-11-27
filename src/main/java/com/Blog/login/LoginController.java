@@ -37,7 +37,6 @@ public class LoginController {
     @PostMapping("/login/start")
     public String login(HttpServletResponse response, @ModelAttribute(name="user") User user) {
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()); //später anpassen
-        System.out.println(optionalUser);
         if (optionalUser.isPresent()) {
             Session session = new Session(optionalUser.get(), Instant.now().plusSeconds(7*24*60*60));
             sessionRepository.save(session); //Neues Feld in der DB

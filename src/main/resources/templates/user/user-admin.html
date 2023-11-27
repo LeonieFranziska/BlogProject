@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/fragments/head :: head(title='Make Admin')}"></head>
+
+<body>
+<h1 class=" title is-1">Make Admin</h1>
+<div th:replace="~{/fragments/menu :: menu(active='Make Admin')}"></div>
+
+<div class="container">
+    <div class="columns">
+        <div class="column is-offset-one-quarter is-half">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        You want to promote/demote User "<span th:text="${user.username}"></span>"?
+                    </p>
+                </header>
+                <div class="card-content">
+
+                </div>
+                <footer class="card-footer">
+                    <span th:if="${user.isAdmin()==false}">
+                    <form action="#" th:action="@{/user/promoteAdmin}" th:object="${user}" method="POST">
+                        <input type="hidden" th:field="*{id}">
+                        <input type="hidden" th:field="*{username}">
+                        <input type="hidden" th:field="*{password}">
+
+                        <button type="submit" class="button is-info">
+                            <span class="icon">
+                                <span class="mdi mdi-card-remove-outline"></span>
+                            </span>
+                            &nbsp; Promote to Admin
+                        </button>
+                    </form>
+                    </span>
+                    <span th:if="${user.isAdmin()==true}">
+                    <form action="#" th:action="@{/user/demoteAdmin}" th:object="${user}" method="POST">
+                        <input type="hidden" th:field="*{id}">
+                        <input type="hidden" th:field="*{username}">
+                        <input type="hidden" th:field="*{password}">
+
+                        <button type="submit" class="button is-danger">
+                            <span class="icon">
+                                <span class="mdi mdi-card-remove-outline"></span>
+                            </span>
+                            &nbsp; Demote to User
+                        </button>
+                    </form>
+                    </span>
+                    <a th:href="@{/user/show}" class="button is-info">
+                        <span class="icon">
+                            <span class="mdi mdi-exit-to-app"></span>
+                        </span>
+                        &nbsp; Abort
+                    </a>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
