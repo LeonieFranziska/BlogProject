@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
-@RequestMapping(value = "/posts")
 public class PostController {
 
     private PostRepository postService;
@@ -27,8 +27,8 @@ public class PostController {
 
 
 
-    @GetMapping(value = "/show")
-    public String show(Model model) {
+    @GetMapping(value = "/posts/show")
+    public String show(Model model, @ModelAttribute(name = "sessionUser") User user) {
         List<Post> thePost  =  postService.findAll();
 
         model.addAttribute("postList", thePost);

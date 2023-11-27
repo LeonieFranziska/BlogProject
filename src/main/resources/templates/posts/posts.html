@@ -25,6 +25,7 @@
         <td th:text="${post.body}"/>
         <td th:text="${post.getComments().toString()}"/>
         <td>
+            <span th:if="${sessionUser.isAdmin()==true}">
             <a th:href="@{/posts/posts/{id}(id=${post.id})}" class="button is-info">
                             <span class="icon">
                                 <span class="mdi mdi-image-edit-outline"></span>
@@ -35,6 +36,8 @@
                                 <span class="mdi mdi-card-remove-outline"></span>
                             </span>
             </a>
+            </span>
+            <span th:unless="${sessionUser.isAdmin()==false}"> </span>
         </td>
 
 

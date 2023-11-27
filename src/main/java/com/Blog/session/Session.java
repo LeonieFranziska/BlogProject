@@ -21,11 +21,13 @@ public class Session {
     @Column(name = "expires_at")
     private Instant expiresAt;
 
-    public Session(User user, Instant instant) {
-    }
 
     public Session() { //default Konstruktor muss immer da sein
+    }
 
+    public Session(User user, Instant expiresAt) {
+        this.user = user;
+        this.expiresAt = expiresAt;
     }
 
     public String getId() {

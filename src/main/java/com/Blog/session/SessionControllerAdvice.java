@@ -26,6 +26,7 @@ public class SessionControllerAdvice {
                 Session session = optionalSession.get();
                 // neues Ablaufdatum für die Session
                 session.setExpiresAt(Instant.now().plusSeconds(7 * 24 * 60 * 60));
+                System.out.println("SessionUser" + session.getUser());
                 return session.getUser();
                 // User ist eingeloggt....
             }
