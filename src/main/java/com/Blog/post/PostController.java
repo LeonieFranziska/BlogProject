@@ -27,13 +27,7 @@ public class PostController {
     public String show(Model model) {
 
 
-        List<Post> thePost = postService.findAll();
-
-
-
-        model.addAttribute("postList", thePost);
-
-        return "/posts/posts";
+        return "index";
     }
 
 
