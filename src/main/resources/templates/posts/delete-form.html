@@ -67,44 +67,41 @@
         </div>
     </div>
 </nav>
-
-<table class="table">
-    <tr>
-        <th>Id</th>
-        <th>title</th>
-        <th>body</th>
-        <th>Comments</th>
-        <th>Actions</th>
-
-
-
-
-
-    </tr>
-    <tr th:each="post : ${postList}">
-        <td th:text="${post.id}"/>
-        <td th:text="${post.title}"/>
-        <td th:text="${post.body}"/>
-        <td th:text="${post.getComments().toString()}"/>
-        <td>
-            <a th:href="@{/posts/posts/{id}(id=${post.id})}" class="button is-info">
-                            <span class="icon">
-                                <span class="mdi mdi-image-edit-outline"></span>
-                            </span>
-            </a>
-            <a th:href="@{/posts/delete(postId=${post.id})}" class="button is-danger">
+<div class="container">
+    <div class="columns">
+        <div class="column is-offset-one-quarter is-half">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Delete a post
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        Do you want to delete "<span th:text="${post.title}"></span>"?
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <form action="#" th:action="@{/posts/delete}" th:object="${post}" method="POST">
+                        <input type="hidden" th:field="*{id}">
+                        <button type="submit" class="button is-danger">
                             <span class="icon">
                                 <span class="mdi mdi-card-remove-outline"></span>
                             </span>
-            </a>
-        </td>
-
-
-
-
-
-    </tr>
-</table>
+                            &nbsp; Delete
+                        </button>
+                    </form>
+                    <a th:href="@{/posts/show}" class="button is-info">
+                        <span class="icon">
+                            <span class="mdi mdi-exit-to-app"></span>
+                        </span>
+                        &nbsp; Abort
+                    </a>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
