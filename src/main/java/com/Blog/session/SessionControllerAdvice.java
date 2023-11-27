@@ -21,8 +21,7 @@ public class SessionControllerAdvice {
     @ModelAttribute("sessionUser")
     public User sessionUser(@CookieValue(value = "sessionId", defaultValue = "") String sessionId) {
         if (!sessionId.isEmpty()) {
-            Optional<Session> optionalSession = sessionRepository.findByIdAndExpiresAtAfter(
-                    sessionId, Instant.now());
+            Optional<Session> optionalSession = sessionRepository.findByIdAndExpiresAtAfter(sessionId, Instant.now());
             if (optionalSession.isPresent()) {
                 Session session = optionalSession.get();
                 // neues Ablaufdatum für die Session

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{/fragments/head :: head(title='Post-Form')}"></head>
+
+<body>
+<h1 class=" title is-1">Post Form</h1>
+<div th:replace="~{/fragments/menu :: menu(active='Post-Form')}"></div>
+
+<form action="#" method="POST" th:action="@{/posts/store}" th:object="${post}">
+    <input type="hidden" th:field="*{id}">
+
+    <div class="field">
+        <label class="label">Title</label>
+        <div class="control">
+            <input class="input" th:errorclass="is-danger" placeholder="Input the post's title" type="text"
+                   th:field="*{title}"/>
+        </div>
+        <ul>
+            <li th:each="error : ${#fields.errors('title')}" th:text="${error}" class="help is-danger"/>
+        </ul>
+    </div>
+    <div class="field">
+        <label class="label">Content</label>
+        <div class="control">
+            <input class="input" placeholder="Enter the content" type="text"
+                   th:field="*{body}"/>
+        </div>
+        <ul>
+            <li th:each="error : ${#fields.errors('body')}" th:text="${error}" class="help is-danger"/>
+        </ul>
+    </div>
+    <div class="field">
+        <label class="label">Date</label>
+        <div class="control">
+            <input class="input" type="date" th:field="*{date}"/>
+        </div>
+        <ul>
+            <li th:each="error : ${#fields.errors('date')}" th:text="${error}" class="help is-danger"/>
+        </ul>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <button class="button is-primary" type="submit">OK</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

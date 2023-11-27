@@ -1,0 +1,26 @@
+<header th:fragment="menu(active)">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-start">
+            <a th:href="@{/posts/show}" class="navbar-item"
+               th:classappend="${#strings.equals(active, 'Posts') ? 'is-active' : ''}">
+                Posts
+            </a>
+            <a th:href="@{/comments/show}" class="navbar-item"
+               th:classappend="${#strings.equals(active, 'Comments') ? 'is-active' : ''}">
+                Comments
+            </a>
+            <a th:href="@{/user/show}" class="navbar-item"
+               th:classappend="${#strings.equals(active, 'User') ? 'is-active' : ''}">
+                User
+            </a>
+            </div>
+            <div class="navbar-end">
+            <a th:href="@{/registration/register}" class="navbar-item"
+               th:classappend="${#strings.equals(active, 'Register') ? 'is-active' : ''}">
+                Register
+            </a>
+
+        </div>
+    </nav>
+</header>
+

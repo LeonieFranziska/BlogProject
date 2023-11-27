@@ -22,6 +22,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "isadmin")
+    private boolean isAdmin=false;
     @OneToMany(mappedBy = "user")
 
     private List<Post> posts;
@@ -29,13 +31,25 @@ public class User {
 
     private List<Comment> comments;
 
+    @OneToMany(mappedBy = "user")
+    private List<Session> sessions;
+
     public User() {
     }
 
-    public User(int id, String username, String password) {
+    public User(int id, String username, String password, boolean isAdmin) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.isAdmin = isAdmin;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
     public List<Post> getPosts() {
