@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.Blog.session.Session;
 import com.Blog.session.SessionRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -34,7 +35,7 @@ public class LoginController {
 
         return "/login/login";
     }
-}
+
     @PostMapping("/login")
     public String login(HttpServletResponse response) {
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword("hello", "password"); //später anpassen
