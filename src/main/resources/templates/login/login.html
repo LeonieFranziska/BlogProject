@@ -1,39 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="ISO-8859-1">
+    <title>Login Form</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
 </head>
 <body>
-<input type="text">
-<input type="text">
+<div class="container">
+    <div class="wrapper">
+        <div class="title"><span>Login Form</span></div>
+        <form th:action="@{/login/start}" th:object="${user}" method="post">
+            <p th:if="${error}" class="error">UserName & Password Incorrect</p>
+            <div class="row">
 
+                <input type="text" name="username" th:field="${user.username}">
+            </div>
+            <div class="row">
 
-<!--<form action="#" method="POST" th:action="@{/login/login}" th:object="${user}">-->
-<!--    <input type="hidden" th:field="*{id}">-->
-
-<!--    <div class="field">-->
-<!--        <label class="label">Name</label>-->
-<!--        <div class="control">-->
-<!--            <input class="input"  placeholder="Input the series' name" type="text"-->
-<!--                   th:field="*{username}"/>-->
-<!--        </div>-->
-
-<!--    </div>-->
-
-<!--    <div class="field">-->
-<!--        <label class="label">TV-Channel</label>-->
-<!--        <div class="control">-->
-<!--            <input class="input" placeholder="Enter the TV channel's name" type="text"-->
-<!--                   th:field="*{password}"/>-->
-<!--        </div>-->
-
-<!--    </div>-->
-<!--    <div class="field">-->
-<!--        <div class="control">-->
-<!--            <button class="button is-primary" type="submit">OK</button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</form>-->
+                <input type="password" name="password" th:field="${user.password}">
+            </div>
+            <div class="row button">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
