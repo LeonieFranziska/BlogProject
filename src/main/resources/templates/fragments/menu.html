@@ -19,10 +19,17 @@
                th:classappend="${#strings.equals(active, 'Register') ? 'is-active' : ''}">
                 Register
             </a>
+                <span th:if="${sessionUser!=null}"> hello
+                    <span th:text="${sessionUser.getUsername()}"></span>
+                    , logout
+                            </span>
+                <span th:unless="${sessionUser==null}">
                 <a th:href="@{/login}" class="navbar-item"
                    th:classappend="${#strings.equals(active, 'LogIn') ? 'is-active' : ''}">
-                    LogIn
+                LogIn
                 </a>
+                </span>
+
 
 
         </div>
