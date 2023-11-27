@@ -19,6 +19,11 @@
                th:classappend="${#strings.equals(active, 'Register') ? 'is-active' : ''}">
                 Register
             </a>
+                <a th:href="@{/}" class="navbar-item"
+                   th:classappend="${#strings.equals(active, 'LogIn') ? 'is-active' : ''}">
+                    LogIn
+                </a>
+
 
         </div>
     </nav>
