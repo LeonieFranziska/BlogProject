@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Login Form</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-
+    <head th:insert="~{/fragments/head :: head(title='Login')}"></head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-
-<div class="container">
-    <div class="wrapper">
-        <div class="title"><span>Login Form</span></div>
-        <form th:action="@{/login/start}" th:object="${user}" method="post">
-            <p th:if="${error}" class="error">UserName & Password Incorrect</p>
-            <div class="row">
-
-                <input type="text" name="username" th:field="${user.username}">
-            </div>
-            <div class="row">
-
-                <input type="password" name="password" th:field="${user.password}">
-            </div>
-            <div class="row button">
-                <input type="submit" value="Login">
-            </div>
-        </form>
-    </div>
-</div>
+    <h2>Welcome</h2>
+    <h1>Good to see you again</h1>
+    <form id="survey-form" th:action="@{/login/start}" th:object="${user}" method="post">
+        <fieldset>
+            <label id="name-label" for="name" class="margin error" >Name
+                <input th:field="${user.username}" type="text" id="name" name="name" placeholder="Enter your name" required />
+            </label>
+            <label  id="email-label" for="password" class="margin">Password
+                <input type="password" id="password" name="password" placeholder="Enter your Password" required />
+            </label>
+        </fieldset>
+        <fieldset>
+            <input type="submit" id="submit" value="Login" />
+            <p class="register">Noch kein Konto? Melde dich <a href="login.html">hier</a> an!</p>
+        </fieldset>
+    </form>
 </body>
 </html>
