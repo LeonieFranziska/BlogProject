@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +23,9 @@ public class Post {
     @Column(name = "body")
     private String body;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "date", columnDefinition = "DATE")
-    private LocalDate date;
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -36,7 +37,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(int id, String title, String body, LocalDate date, User user, List<Comment> comments) {
+    public Post(int id, String title, String body, LocalDateTime date, User user, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -91,11 +92,11 @@ public class Post {
         this.user = user;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

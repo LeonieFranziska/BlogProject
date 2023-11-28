@@ -11,6 +11,7 @@
         <th>Id</th>
         <th>title</th>
         <th>body</th>
+        <th>date</th>
         <th>Comments</th>
         <th>Actions</th>
 
@@ -23,8 +24,9 @@
         <td th:text="${post.id}"/>
         <td th:text="${post.title}"/>
         <td th:text="${post.body}"/>
+        <td th:text="${post.date}"/>
         <span th:each="comment: ${post.getComments()}">
-            <td th:text="${comment}"/>
+            <td th:text="${comment.text}"/>
         </span>
         <td>
             <span th:if="${sessionUser!=null && sessionUser.isAdmin()==true}">

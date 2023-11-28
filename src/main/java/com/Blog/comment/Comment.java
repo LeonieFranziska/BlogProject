@@ -3,6 +3,10 @@ package com.Blog.comment;
 import com.Blog.post.Post;
 import com.Blog.user.User;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comment")
@@ -24,15 +28,19 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm ")
+    @Column(name = "date", columnDefinition = "DATE")
+    private LocalDateTime date;
+
     public Comment(){
     }
 
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
+    public Comment(int id, String text, User user, Post post, LocalDateTime date) {
+        this.id = id;
+        this.text = text;
+        this.user = user;
         this.post = post;
+        this.date = date;
     }
 
     public int getId() {
@@ -59,9 +67,30 @@ public class Comment {
         this.user = user;
     }
 
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
-        return id +
-                ": " + text + " from " + user ;
+        return "Comment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", user=" + user +
+                ", post=" + post +
+                ", date=" + date +
+                '}';
     }
 }
