@@ -27,7 +27,7 @@
             <td th:text="${comment}"/>
         </span>
         <td>
-            <span th:if="${sessionUser.isAdmin()==true}">
+            <span th:if="${sessionUser!=null && sessionUser.isAdmin()==true}">
             <a th:href="@{/posts/posts/{id}(id=${post.id})}" class="button is-info">
                             <span class="icon">
                                 <span class="mdi mdi-image-edit-outline"></span>
@@ -39,13 +39,13 @@
                             </span>
             </a>
             </span>
-            <span th:unless="${sessionUser.isAdmin()==false}"> </span>
+            <span th:unless="${sessionUser==null || sessionUser.isAdmin()==false}"> </span>
         </td>
 
 
     </tr>
 </table>
-<span th:if="${sessionUser.isAdmin()==true}">
+<span th:if="${sessionUser!=null && sessionUser.isAdmin()==true}">
 <a th:href="@{/posts/new}" class="button is-primary">New Post</a>
     </span>
 </body>
