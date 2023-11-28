@@ -48,12 +48,12 @@ public class PostController {
     }
 
     @PostMapping(value = "/store")
-    public String store(@ModelAttribute("post") Post thePost, BindingResult result) {
+    public String store(@ModelAttribute("post") Post thePost, @ModelAttribute("sessionUser") User theUser, BindingResult result) {
         if (result.hasErrors()) {
             return "/posts/posts-form";
         }
         // Hier eine if user ist Admin abfrage!
-
+        thePost.setUser(theUser);
         postService.save(thePost);
 
         return "redirect:/posts/show";
