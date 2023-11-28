@@ -46,12 +46,14 @@
             </span>
         <span th:unless="${sessionUser==null || sessionUser.isAdmin()==false}"> </span>
         <span th:if="${sessionUser!=null}">
-        <a th:href="@{/comments/new(postId=${post.id})}" class="button is-primary">New Comment</a>
+
+        <a th:href="@{/comments/new/{postId}(postId=${post.id})}" class="button is-primary">
+            <button class="button is-primary" type="submit">New Comment</button>
+        </a>
         </span>
+        <p>Comments:</p>
         <div th:each="comment: ${post.getComments()}">
-            <p>Comments:</p>
             <span th:text="${comment}"/>
-            // Button lösche comment/edit
         </div>
 
     </div>

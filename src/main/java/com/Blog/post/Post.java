@@ -100,5 +100,15 @@ public class Post {
         this.date = date;
     }
 
-
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", date=" + date +
+                ", user=" + user +
+                ", comments=" + comments +
+                '}';
+    }
 }
