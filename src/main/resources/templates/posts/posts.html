@@ -6,49 +6,14 @@
 <h1 class=" title is-1">Posts</h1>
 <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>
 
-<table class="table">
-    <tr>
-        <th>Id</th>
-        <th>title</th>
-        <th>body</th>
-        <th>date</th>
-        <th>Comments</th>
-        <th>Actions</th>
-
-
-
-
-
-    </tr>
-    <tr th:each="post : ${postList}">
-        <td th:text="${post.id}"/>
-        <td th:text="${post.title}"/>
-        <td th:text="${post.body}"/>
-        <td th:text="${post.date}"/>
-        <span th:each="comment: ${post.getComments()}">
-            <td th:text="${comment.text}"/>
-        </span>
-        <td>
-            <span th:if="${sessionUser!=null && sessionUser.isAdmin()==true}">
-            <a th:href="@{/posts/posts/{id}(id=${post.id})}" class="button is-info">
-                            <span class="icon">
-                                <span class="mdi mdi-image-edit-outline"></span>
-                            </span>
-            </a>
-            <a th:href="@{/posts/delete(postId=${post.id})}" class="button is-danger">
-                            <span class="icon">
-                                <span class="mdi mdi-card-remove-outline"></span>
-                            </span>
-            </a>
-            </span>
-            <span th:unless="${sessionUser==null || sessionUser.isAdmin()==false}"> </span>
-        </td>
-
-
-    </tr>
-</table>
 <span th:if="${sessionUser!=null && sessionUser.isAdmin()==true}">
-<a th:href="@{/posts/new}" class="button is-primary">New Post</a>
-    </span>
+    <a th:href="@{/posts/new}" class="button is-primary">New Post</a>
+</span>
+
+<ul>
+    <li th:each="post : ${postList}" th:insert="~{/fragments/post-fragment :: postInfo(${post})}">
+    </li>
+</ul>
+
 </body>
 </html>
