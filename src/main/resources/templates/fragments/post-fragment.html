@@ -20,7 +20,7 @@
                 </div>
                 <div class="media-content">
                     <p class="title is-4"  th:text="${post.title}"></p>
-                    <p class="subtitle is-6">@johnsmith</p>
+                    <span>Author: </span><span class="subtitle is-6" th:text="${post.getUser().getUsername()}"></span>
                 </div>
             </div>
 
@@ -48,10 +48,25 @@
         <span th:if="${sessionUser!=null}">
         <a th:href="@{/comments/new(postId=${post.id})}" class="button is-primary">New Comment</a>
         </span>
+        <p>Comments:</p>
         <div th:each="comment: ${post.getComments()}">
-            <p>Comments:</p>
+
             <span th:text="${comment}"/>
-            // Button lösche comment/edit
+
+            <span th:if="${(sessionUser!=null && sessionUser.isAdmin()==true) || (sessionUser!=null && sessionUser.getId()==comment.getUser().getId())}">
+            <a th:href="@{/comments/comments/{id}(id=${comment.id})}" class="button is-info">
+                            <span class="icon">
+                                <span class="mdi mdi-image-edit-outline"></span>
+                            </span>
+            </a>
+            <a th:href="@{/comments/delete(postId=${comment.id})}" class="button is-danger">
+                            <span class="icon">
+                                <span class="mdi mdi-card-remove-outline"></span>
+                            </span>
+            </a>
+            </span>
+            <span th:unless="${sessionUser==null || sessionUser.isAdmin()==false}"> </span>
+
         </div>
 
     </div>
