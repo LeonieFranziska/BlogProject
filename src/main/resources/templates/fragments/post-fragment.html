@@ -53,7 +53,23 @@
         </span>
         <p>Comments:</p>
         <div th:each="comment: ${post.getComments()}">
+
             <span th:text="${comment}"/>
+
+            <span th:if="${(sessionUser!=null && sessionUser.isAdmin()==true) || (sessionUser!=null && sessionUser.getId()==comment.getUser().getId())}">
+            <a th:href="@{/comments/comments/{id}(id=${comment.id})}" class="button is-info">
+                            <span class="icon">
+                                <span class="mdi mdi-image-edit-outline"></span>
+                            </span>
+            </a>
+            <a th:href="@{/comments/delete(postId=${comment.id})}" class="button is-danger">
+                            <span class="icon">
+                                <span class="mdi mdi-card-remove-outline"></span>
+                            </span>
+            </a>
+            </span>
+            <span th:unless="${sessionUser==null || sessionUser.isAdmin()==false}"> </span>
+
         </div>
 
     </div>
