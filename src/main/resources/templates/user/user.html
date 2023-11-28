@@ -17,7 +17,6 @@
   <tr>
     <th>Id</th>
     <th>Username</th>
-    <th>password</th>
     <th>Is Admin</th>
 
 
@@ -25,9 +24,8 @@
   <tr th:each="user : ${userList}">
     <td th:text="${user.id}"/>
     <td th:text="${user.username}"/>
-    <td th:text="${user.password}"/>
     <td th:text="${user.isAdmin}"/>
-    <td><span th:if="${sessionUser.isAdmin()==true}">
+    <td><span th:if="${sessionUser!=null && sessionUser.isAdmin()==true}">
             <a th:href="@{/user/promoteAdmin(userId=${user.id})}" class="button is-info">
                             <span class="icon">
                                 <span class="mdi mdi-image-edit-outline"></span>
